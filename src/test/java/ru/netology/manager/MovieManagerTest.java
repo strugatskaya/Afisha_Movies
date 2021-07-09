@@ -21,18 +21,49 @@ public class MovieManagerTest {
 //  }
 
     @Test
-    public void AddNewMovie() {
+    void addInEmpty() {
+        manager.add(first);
+
+        assertArrayEquals(new MovieItem[]{first}, manager.getAll());
+    }
+    @Test
+    void addTwoMovies() {
+        manager.add(first);
+        manager.add(second);
+
+        assertArrayEquals(new MovieItem[]{second, first}, manager.getAll());
+    }
+
+    @Test
+    void addThreeMovies() {
         manager.add(first);
         manager.add(second);
         manager.add(third);
-    }
 
+        assertArrayEquals(new MovieItem[]{third, second, first}, manager.getAll());
+    }
 
     @Test
-    public void GetAllMovies() {
-        manager.getAll();
+    void getAllMovieCount1() {
+       MovieManager movieManager = new MovieManager(1);
+
+        movieManager.add(first);
+        movieManager.add(second);
+        movieManager.add(third);
+
+        assertArrayEquals(new MovieItem[]{third}, movieManager.getAll());
     }
 
+    @Test
+    void getAllMovieCount9() {
+        MovieManager movieManager = new MovieManager(9);
+
+        movieManager.add(first);
+        movieManager.add(second);
+        movieManager.add(third);
+
+        assertArrayEquals(new MovieItem[]{third, second, first}, movieManager.getAll());
+    }
 }
 
 
